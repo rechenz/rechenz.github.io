@@ -1,0 +1,15 @@
+﻿# Hugo
+/public/
+/resources/_gen/
+/hugo_stats.json
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vs/
+.vscode/
+*.sln
+*.suo
