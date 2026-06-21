@@ -29,7 +29,16 @@ body {
     z-index: -1;
 }
 
-/* 内容区加半透明遮罩，保证文字清晰 */
+/* 全局卡片毛玻璃 */
+.article-list article,
+.section-card,
+.article-page .main-article,
+.widget.archives .widget-archive--list,
+.tagCloud .tagCloud-tags a {
+    backdrop-filter: blur(8px);
+}
+
+/* 内容区包层也加模糊 */
 .section-inner {
     backdrop-filter: blur(3px);
 }
