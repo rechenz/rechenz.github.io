@@ -39,6 +39,7 @@ main.main,
  * ---------------------------------------- */
 /* 亮色 */
 .article-list article,
+.article-list--compact,
 .section-card,
 .article-page .main-article,
 .widget.archives .widget-archive--list,
@@ -50,6 +51,7 @@ main.main,
 
 /* 深色 */
 [data-scheme="dark"] .article-list article,
+[data-scheme="dark"] .article-list--compact,
 [data-scheme="dark"] .section-card,
 [data-scheme="dark"] .article-page .main-article,
 [data-scheme="dark"] .widget.archives .widget-archive--list,
