@@ -1,11 +1,25 @@
 /* ================================================================
  * 博客自定义样式 — Hugo Stack 主题
  * 文件: assets/scss/custom.scss
- * 被主题 style.scss 最后 @import，可以安全覆盖
+ * 被主题 style.scss 最后 @import，利用 CSS 级联覆盖
+ * 原则：用 CSS 变量覆盖主题，不用 !important
  * ================================================================ */
 
 /* ----------------------------------------
- * 1. 背景
+ * 1. 卡片变量覆盖（主题里原本是 #fff / #424242）
+ * ---------------------------------------- */
+:root {
+    --card-background: rgba(255, 255, 255, 0.7);
+    --card-background-selected: rgba(234, 234, 234, 0.85);
+}
+
+[data-scheme="dark"] {
+    --card-background: rgba(30, 30, 30, 0.65);
+    --card-background-selected: rgba(50, 50, 50, 0.7);
+}
+
+/* ----------------------------------------
+ * 2. 背景图片
  * ---------------------------------------- */
 body {
     background-image: url('/bg.jpg');
@@ -15,100 +29,65 @@ body {
     background-repeat: no-repeat;
 }
 
-[data-scheme="dark"] body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: -1;
+/* 深色背景压暗（用 gradient 叠加，不用伪元素） */
+[data-scheme="dark"] body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/bg.jpg');
 }
 
-/* ----------------------------------------
- * 2. 容器透明链
- * ---------------------------------------- */
+/* 容器透明链：确保 body 背景穿透到卡片 */
 main.main,
-.main-container,
-.container.extended {
-    background: transparent !important;
+.main-container {
+    background: transparent;
 }
 
 /* ----------------------------------------
- * 3. 卡片半透明 + 毛玻璃
- *    统一用 !important 直打，不走 CSS 变量
- *    （Hugo SCSS 会把 :root 变量合并吞掉）
+ * 3. 毛玻璃效果
+ *    backdrop-filter 无法用 CSS 变量，直接写在卡片选择器上
+ *    所有卡片已在 (1) 中通过 --card-background 获得半透明背景
  * ---------------------------------------- */
-/* 亮色 */
 .article-list article,
 .article-list--compact,
 .section-card,
 .article-page .main-article,
 .widget.archives .widget-archive--list,
 .tagCloud .tagCloud-tags a,
-.pagination {
-    background-color: rgba(255, 255, 255, 0.7) !important;
+.pagination,
+.left-sidebar {
     backdrop-filter: blur(8px);
 }
 
-/* 深色 */
-[data-scheme="dark"] .article-list article,
-[data-scheme="dark"] .article-list--compact,
-[data-scheme="dark"] .section-card,
-[data-scheme="dark"] .article-page .main-article,
-[data-scheme="dark"] .widget.archives .widget-archive--list,
-[data-scheme="dark"] .tagCloud .tagCloud-tags a,
-[data-scheme="dark"] .pagination {
-    background-color: rgba(30, 30, 30, 0.65) !important;
+/* 侧边栏模糊更强一点，因为它是固定栏 */
+.left-sidebar {
+    backdrop-filter: blur(12px);
 }
 
-/* 搜索框 input（自带 card-style，只改背景+模糊，不叠容器层） */
-.search-form {
-    background: none !important;
-}
-
+/* 搜索框 input 有独立的 card-style，单独给模糊 */
 .search-form input {
-    padding: 20px 20px 20px 20px !important;
-    font-size: 1.6rem !important;
-    line-height: 1.5 !important;
     backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.7) !important;
-}
-
-.search-form label {
-    top: 14px !important;
-    font-size: 1.2rem !important;
-}
-
-[data-scheme="dark"] .search-form input {
-    background-color: rgba(30, 30, 30, 0.65) !important;
 }
 
 /* ----------------------------------------
- * 4. 侧边栏
+ * 4. 侧边栏：卡片样式 + 菜单修正
  * ---------------------------------------- */
 .left-sidebar {
-    padding: var(--card-padding) !important;
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
-[data-scheme="dark"] .left-sidebar {
-    background-color: rgba(30, 30, 30, 0.65) !important;
-}
-
+/* 主题的 menu 有负边距，会跑出卡片边界，归零 */
 .left-sidebar #main-menu {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-left: 0;
+    margin-right: 0;
 }
 
+/* 桌面端给侧边栏上下留出呼吸空间 */
 @media (min-width: 768px) {
     .left-sidebar {
-        margin-top: var(--main-top-padding) !important;
-        margin-bottom: var(--main-top-padding) !important;
+        margin-top: var(--main-top-padding);
+        margin-bottom: var(--main-top-padding);
     }
     .left-sidebar.sticky {
-        top: var(--main-top-padding) !important;
+        top: var(--main-top-padding);
     }
 }
 
@@ -116,5 +95,5 @@ main.main,
  * 5. 底部
  * ---------------------------------------- */
 .footer {
-    background-color: transparent !important;
+    background-color: transparent;
 }
