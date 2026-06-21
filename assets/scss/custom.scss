@@ -12,19 +12,13 @@
     --card-background-selected: rgba(60, 60, 60, 0.8);
 }
 
-/* 背景图片 — 淡入加载 */
+/* 背景图片 */
 body {
     background-image: url('/bg.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    animation: bgFadeIn 0.5s ease;
-}
-
-@keyframes bgFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 /* 加载时先显示一个纯色背景占位 */
