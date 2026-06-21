@@ -1,27 +1,61 @@
-﻿/* 自定义背景 — 原神绮良良 4K 壁纸 */
+/* 自定义背景 — 原神绮良良 4K 壁纸 */
 :root {
     --body-background: #f5f5fa;
 
     /* 亮色模式：半透明白色卡片 */
-    --card-background: rgba(255, 255, 255, 0.85);
-    --card-background-selected: rgba(234, 234, 234, 0.9);
+    --card-background: rgba(255, 255, 255, 0.75);
+    --card-background-selected: rgba(234, 234, 234, 0.85);
 }
 
 [data-scheme="dark"] {
-    --card-background: rgba(50, 50, 50, 0.85);
-    --card-background-selected: rgba(66, 66, 66, 0.9);
+    --card-background: rgba(40, 40, 40, 0.7);
+    --card-background-selected: rgba(60, 60, 60, 0.8);
 }
 
-/* 整体布局背景 */
+/* 背景图片 — 淡入加载 */
 body {
     background-image: url('/bg.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    animation: bgFadeIn 0.5s ease;
 }
 
-/* 页面包装层加一点半透明遮罩让文字更清晰 */
+@keyframes bgFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 加载时先显示一个纯色背景占位 */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #1a1a2e;
+    z-index: -2;
+}
+
+/* 内容区加半透明遮罩，保证文字清晰 */
 .section-inner {
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
+}
+
+/* 侧边栏卡片也加半透明 */
+.sidebar {
+    background-color: transparent !important;
+}
+
+.sidebar-inner {
+    backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-scheme="dark"] .sidebar-inner {
+    background-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+/* 底部透明度 */
+.footer {
+    background-color: transparent !important;
 }
