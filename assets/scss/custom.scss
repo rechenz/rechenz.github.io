@@ -53,18 +53,24 @@ body {
     background-color: rgba(30, 30, 30, 0.65) !important;
 }
 
+/* 侧边栏内部内容对齐 */
+.left-sidebar #main-menu {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
 /* 桌面端：侧边栏贴左边缘 */
 @media (min-width: 768px) {
     .left-sidebar {
         --edge-shift: calc((100vw - 100%) / 2 + var(--container-padding));
         margin-left: calc(var(--edge-shift) * -1);
         padding-left: calc(var(--card-padding) + var(--edge-shift)) !important;
-        margin-top: calc(var(--main-top-padding) * 2) !important;
-        margin-bottom: calc(var(--main-top-padding) * 2) !important;
+        margin-top: var(--main-top-padding) !important;
+        margin-bottom: var(--main-top-padding) !important;
     }
 
     .left-sidebar.sticky {
-        top: calc(var(--main-top-padding) * 2) !important;
+        top: var(--main-top-padding) !important;
     }
 }
 
