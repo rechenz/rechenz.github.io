@@ -108,9 +108,10 @@ main.main,
     }
 }
 
-/* 侧边栏宽度补丁：在 media query 优先级之上确保 22% */
+/* 侧边栏宽度补丁 + 内容右移 */
 .left-sidebar {
     width: 22%;
+    padding-left: calc(var(--card-padding) + 8px) !important;
 }
 
 /* ----------------------------------------
