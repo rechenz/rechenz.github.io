@@ -1,0 +1,27 @@
+﻿/* 自定义背景 — 原神绮良良 4K 壁纸 */
+:root {
+    --body-background: #f5f5fa;
+
+    /* 亮色模式：半透明白色卡片 */
+    --card-background: rgba(255, 255, 255, 0.85);
+    --card-background-selected: rgba(234, 234, 234, 0.9);
+}
+
+[data-scheme="dark"] {
+    --card-background: rgba(50, 50, 50, 0.85);
+    --card-background-selected: rgba(66, 66, 66, 0.9);
+}
+
+/* 整体布局背景 */
+body {
+    background-image: url('/bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 页面包装层加一点半透明遮罩让文字更清晰 */
+.section-inner {
+    backdrop-filter: blur(2px);
+}
