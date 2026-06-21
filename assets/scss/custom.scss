@@ -21,14 +21,7 @@ body {
     background-repeat: no-repeat;
 }
 
-/* 加载时先显示一个纯色背景占位 */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: #1a1a2e;
-    z-index: -2;
-}
+
 
 /* 内容区加半透明遮罩，保证文字清晰 */
 .section-inner {
