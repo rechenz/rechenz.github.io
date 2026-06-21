@@ -11,7 +11,6 @@
 :root {
     --card-background: rgba(255, 255, 255, 0.55);
     --card-background-selected: rgba(234, 234, 234, 0.7);
-    --left-sidebar-max-width: 22%;
 }
 
 [data-scheme="dark"] {
@@ -23,7 +22,6 @@
  * 2. 背景图片
  * ---------------------------------------- */
 body {
-    --body-background: #dcdcdc;
     background-image: url('/bg.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -43,9 +41,7 @@ main.main,
 }
 
 /* ----------------------------------------
- * 3. 毛玻璃效果
- *    backdrop-filter 无法用 CSS 变量，直接写在卡片选择器上
- *    所有卡片已在 (1) 中通过 --card-background 获得半透明背景
+ * 3. 毛玻璃效果（用具体选择器，不用 !important）
  * ---------------------------------------- */
 .article-list article,
 .article-list--compact,
@@ -53,25 +49,22 @@ main.main,
 .article-page .main-article,
 .widget.archives .widget-archive--list,
 .tagCloud .tagCloud-tags a,
-.pagination,
-.left-sidebar {
+.pagination {
     backdrop-filter: blur(8px);
 }
 
-/* 侧边栏模糊更强一点，因为它是固定栏 */
-.left-sidebar {
-    backdrop-filter: blur(12px);
-}
-
-/* 搜索框 input 有独立的 card-style，单独给模糊 */
+/* 搜索框 input 有独立的 card-style */
 .search-form input {
     backdrop-filter: blur(8px);
 }
 
 /* ----------------------------------------
- * 4. 侧边栏：卡片样式 + 菜单修正
+ * 4. 侧边栏：统一卡片风格 + 毛玻璃 + 拓宽
  * ---------------------------------------- */
 .left-sidebar {
+    background-color: var(--card-background);
+    backdrop-filter: blur(12px);
+    width: 22%;
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
 }
@@ -82,7 +75,7 @@ main.main,
     margin-right: 0;
 }
 
-/* 桌面端给侧边栏上下留出呼吸空间 */
+/* 桌面端给侧边栏留呼吸空间 */
 @media (min-width: 768px) {
     .left-sidebar {
         margin-top: var(--main-top-padding);
