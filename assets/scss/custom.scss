@@ -20,8 +20,14 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-
-
+/* 深色模式：背景压暗 */
+[data-scheme="dark"] body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+}
 
 /* 内容区加半透明遮罩，保证文字清晰 */
 .section-inner {
