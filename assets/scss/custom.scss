@@ -34,18 +34,14 @@ body {
     backdrop-filter: blur(3px);
 }
 
-/* 侧边栏卡片也加半透明 */
-.sidebar {
-    background-color: transparent !important;
+/* 侧边栏：半透明背景，保证文字可读 */
+.left-sidebar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.sidebar-inner {
-    backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.75) !important;
-}
-
-[data-scheme="dark"] .sidebar-inner {
-    background-color: rgba(0, 0, 0, 0.25) !important;
+[data-scheme="dark"] .left-sidebar {
+    background-color: rgba(30, 30, 30, 0.65) !important;
 }
 
 /* 底部透明度 */
