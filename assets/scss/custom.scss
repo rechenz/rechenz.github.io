@@ -98,13 +98,19 @@ main.main,
 }
 
 @media (min-width: 768px) {
-    .left-sidebar {
+.left-sidebar {
         margin-top: var(--main-top-padding);
         margin-bottom: var(--main-top-padding);
+        width: 22%;
     }
     .left-sidebar.sticky {
         top: var(--main-top-padding);
     }
+}
+
+/* 侧边栏宽度补丁：在 media query 优先级之上确保 22% */
+.left-sidebar {
+    width: 22%;
 }
 
 /* ----------------------------------------
