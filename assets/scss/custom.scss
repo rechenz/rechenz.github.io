@@ -34,10 +34,8 @@ body {
     backdrop-filter: blur(3px);
 }
 
-/* 侧边栏基础：卡片圆角 + 毛玻璃 */
+/* 侧边栏：卡片风 */
 .left-sidebar {
-    margin-top: var(--main-top-padding) !important;
-    margin-bottom: var(--main-top-padding) !important;
     padding: var(--card-padding) !important;
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
@@ -45,26 +43,19 @@ body {
     background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.left-sidebar.sticky {
-    top: var(--main-top-padding) !important;
-}
-
 [data-scheme="dark"] .left-sidebar {
     background-color: rgba(30, 30, 30, 0.65) !important;
 }
 
-/* 侧边栏内部内容对齐 */
+/* 菜单项去掉负边距 */
 .left-sidebar #main-menu {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
 
-/* 桌面端：侧边栏贴左边缘 */
+/* 桌面端：增加上下间距 */
 @media (min-width: 768px) {
     .left-sidebar {
-        --edge-shift: calc((100vw - 100%) / 2 + var(--container-padding));
-        margin-left: calc(var(--edge-shift) * -1);
-        padding-left: calc(var(--card-padding) + var(--edge-shift)) !important;
         margin-top: var(--main-top-padding) !important;
         margin-bottom: var(--main-top-padding) !important;
     }
