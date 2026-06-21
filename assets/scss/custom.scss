@@ -29,6 +29,13 @@ body {
     z-index: -1;
 }
 
+/* 打通透明链：确保卡片到背景之间没有实色挡住 */
+main.main,
+.main-container,
+.container.extended {
+    background: transparent !important;
+}
+
 /* 全局卡片毛玻璃 */
 .article-list article,
 .section-card,
@@ -38,10 +45,7 @@ body {
     backdrop-filter: blur(8px);
 }
 
-/* 内容区包层也加模糊 */
-.section-inner {
-    backdrop-filter: blur(3px);
-}
+
 
 /* 侧边栏：卡片风 */
 .left-sidebar {
