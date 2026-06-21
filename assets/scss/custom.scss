@@ -9,19 +9,21 @@
  * 1. 卡片变量覆盖（主题里原本是 #fff / #424242）
  * ---------------------------------------- */
 :root {
-    --card-background: rgba(255, 255, 255, 0.7);
-    --card-background-selected: rgba(234, 234, 234, 0.85);
+    --card-background: rgba(255, 255, 255, 0.55);
+    --card-background-selected: rgba(234, 234, 234, 0.7);
+    --left-sidebar-max-width: 22%;
 }
 
 [data-scheme="dark"] {
-    --card-background: rgba(30, 30, 30, 0.65);
-    --card-background-selected: rgba(50, 50, 50, 0.7);
+    --card-background: rgba(25, 25, 25, 0.55);
+    --card-background-selected: rgba(40, 40, 40, 0.65);
 }
 
 /* ----------------------------------------
  * 2. 背景图片
  * ---------------------------------------- */
 body {
+    --body-background: #dcdcdc;
     background-image: url('/bg.jpg');
     background-size: cover;
     background-attachment: fixed;
