@@ -1,5 +1,6 @@
 ﻿---
 title: "归档"
+description: "归档"
 layout: "archives"
-summary: "归档"
+slug: "archives"
 ---
