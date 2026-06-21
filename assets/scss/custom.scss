@@ -1,25 +1,10 @@
 /* ================================================================
  * 博客自定义样式 — Hugo Stack 主题
- * 文件: assets/scss/custom.scss
- * 被主题 style.scss 最后 @import，利用 CSS 级联覆盖
- * 原则：用 CSS 变量覆盖主题，不用 !important
+ * 原则：不用 !important，用具体选择器覆盖
  * ================================================================ */
 
 /* ----------------------------------------
- * 1. 卡片变量覆盖（主题里原本是 #fff / #424242）
- * ---------------------------------------- */
-:root {
-    --card-background: rgba(255, 255, 255, 0.55);
-    --card-background-selected: rgba(234, 234, 234, 0.7);
-}
-
-[data-scheme="dark"] {
-    --card-background: rgba(25, 25, 25, 0.55);
-    --card-background-selected: rgba(40, 40, 40, 0.65);
-}
-
-/* ----------------------------------------
- * 2. 背景图片
+ * 1. 背景图片
  * ---------------------------------------- */
 body {
     background-image: url('/bg.jpg');
@@ -29,19 +14,17 @@ body {
     background-repeat: no-repeat;
 }
 
-/* 深色背景压暗（用 gradient 叠加，不用伪元素） */
 [data-scheme="dark"] body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/bg.jpg');
 }
 
-/* 容器透明链：确保 body 背景穿透到卡片 */
 main.main,
 .main-container {
     background: transparent;
 }
 
 /* ----------------------------------------
- * 3. 毛玻璃效果（用具体选择器，不用 !important）
+ * 2. 亮色模式：卡片毛玻璃
  * ---------------------------------------- */
 .article-list article,
 .article-list--compact,
@@ -49,33 +32,71 @@ main.main,
 .article-page .main-article,
 .widget.archives .widget-archive--list,
 .tagCloud .tagCloud-tags a,
-.pagination {
+.pagination,
+.left-sidebar,
+.search-form input {
+    background-color: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(8px);
 }
 
-/* 搜索框 input 有独立的 card-style */
-.search-form input {
-    backdrop-filter: blur(8px);
+.left-sidebar {
+    backdrop-filter: blur(12px);
 }
 
 /* ----------------------------------------
- * 4. 侧边栏：统一卡片风格 + 毛玻璃 + 拓宽
+ * 3. 深色模式：卡片统一半透明深色
+ * ---------------------------------------- */
+[data-scheme="dark"] .article-list article,
+[data-scheme="dark"] .article-list--compact,
+[data-scheme="dark"] .section-card,
+[data-scheme="dark"] .article-page .main-article,
+[data-scheme="dark"] .widget.archives .widget-archive--list,
+[data-scheme="dark"] .tagCloud .tagCloud-tags a,
+[data-scheme="dark"] .pagination,
+[data-scheme="dark"] .left-sidebar,
+[data-scheme="dark"] .search-form input {
+    background-color: rgba(25, 25, 25, 0.55);
+    backdrop-filter: blur(8px);
+}
+
+[data-scheme="dark"] .left-sidebar {
+    backdrop-filter: blur(12px);
+}
+
+/* ----------------------------------------
+ * 4. 深色卡片文字颜色
+ * ---------------------------------------- */
+[data-scheme="dark"] .article-list .article-title a,
+[data-scheme="dark"] .article-list--compact .article-title a,
+[data-scheme="dark"] .article-page .main-article .article-title a {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+[data-scheme="dark"] .article-list .article-subtitle,
+[data-scheme="dark"] .article-list--compact .article-preview,
+[data-scheme="dark"] .article-time,
+[data-scheme="dark"] .article-page .main-article .article-content,
+[data-scheme="dark"] .section-card .section-description,
+[data-scheme="dark"] .article-meta time,
+[data-scheme="dark"] .article-meta span,
+[data-scheme="dark"] .pagination .page-link {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ----------------------------------------
+ * 5. 侧边栏：拓宽 + 圆角 + 阴影
  * ---------------------------------------- */
 .left-sidebar {
-    background-color: var(--card-background);
-    backdrop-filter: blur(12px);
     width: 22%;
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
 }
 
-/* 主题的 menu 有负边距，会跑出卡片边界，归零 */
 .left-sidebar #main-menu {
     margin-left: 0;
     margin-right: 0;
 }
 
-/* 桌面端给侧边栏留呼吸空间 */
 @media (min-width: 768px) {
     .left-sidebar {
         margin-top: var(--main-top-padding);
@@ -87,7 +108,7 @@ main.main,
 }
 
 /* ----------------------------------------
- * 5. 底部
+ * 6. 底部
  * ---------------------------------------- */
 .footer {
     background-color: transparent;
