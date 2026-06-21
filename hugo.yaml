@@ -40,7 +40,7 @@ params:
     sidebar:
         compact: false
         avatar: ""
-        subtitle: "游戏开发者 · AI 爱好者 · 星核猎客"
+        subtitle: "游戏开发者 · AI 爱好者"
         emoji: "🐺"
         status:
             emoji: "🟢"
