@@ -34,9 +34,10 @@ body {
     backdrop-filter: blur(3px);
 }
 
-/* 侧边栏：卡片风 + 紧贴左边缘 */
+/* 侧边栏基础：卡片圆角 + 毛玻璃 */
 .left-sidebar {
-    margin-left: calc(var(--container-padding) * -1);
+    margin-top: var(--main-top-padding) !important;
+    margin-bottom: var(--main-top-padding) !important;
     padding: var(--card-padding) !important;
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
@@ -50,6 +51,21 @@ body {
 
 [data-scheme="dark"] .left-sidebar {
     background-color: rgba(30, 30, 30, 0.65) !important;
+}
+
+/* 桌面端：侧边栏贴左边缘 */
+@media (min-width: 768px) {
+    .left-sidebar {
+        --edge-shift: calc((100vw - 100%) / 2 + var(--container-padding));
+        margin-left: calc(var(--edge-shift) * -1);
+        padding-left: calc(var(--card-padding) + var(--edge-shift)) !important;
+        margin-top: calc(var(--main-top-padding) * 2) !important;
+        margin-bottom: calc(var(--main-top-padding) * 2) !important;
+    }
+
+    .left-sidebar.sticky {
+        top: calc(var(--main-top-padding) * 2) !important;
+    }
 }
 
 /* 底部透明度 */
