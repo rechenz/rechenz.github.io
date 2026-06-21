@@ -6,6 +6,13 @@ theme: "hugo-theme-stack"
 pagination:
     pagerSize: 10
 
+outputFormats:
+  json:
+    mediaType: application/json
+    baseName: index
+    isPlainText: true
+    notAlternative: true
+
 defaultContentLanguage: "zh-cn"
 
 enableEmoji: true
