@@ -1,30 +1,12 @@
-/* 自定义背景 — 原神绮良良 4K 壁纸 */
+/* ================================================================
+ * 博客自定义样式 — Hugo Stack 主题
+ * 文件: assets/scss/custom.scss
+ * 被主题 style.scss 最后 @import，可以安全覆盖
+ * ================================================================ */
 
-/* 亮色模式：所有卡片半透明 */
-.article-list article,
-.section-card,
-.article-page .main-article,
-.widget.archives .widget-archive--list,
-.tagCloud .tagCloud-tags a,
-.pagination,
-.search-form,
-.left-sidebar {
-    background-color: rgba(255, 255, 255, 0.7) !important;
-}
-
-/* 深色模式：所有卡片半透明 */
-[data-scheme="dark"] .article-list article,
-[data-scheme="dark"] .section-card,
-[data-scheme="dark"] .article-page .main-article,
-[data-scheme="dark"] .widget.archives .widget-archive--list,
-[data-scheme="dark"] .tagCloud .tagCloud-tags a,
-[data-scheme="dark"] .pagination,
-[data-scheme="dark"] .search-form,
-[data-scheme="dark"] .left-sidebar {
-    background-color: rgba(30, 30, 30, 0.65) !important;
-}
-
-/* 背景图片 */
+/* ----------------------------------------
+ * 1. 背景
+ * ---------------------------------------- */
 body {
     background-image: url('/bg.jpg');
     background-size: cover;
@@ -32,7 +14,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-/* 深色模式：背景压暗 */
+
 [data-scheme="dark"] body::after {
     content: '';
     position: fixed;
@@ -41,50 +23,86 @@ body {
     z-index: -1;
 }
 
-/* 打通透明链：确保卡片到背景之间没有实色挡住 */
+/* ----------------------------------------
+ * 2. 容器透明链
+ * ---------------------------------------- */
 main.main,
 .main-container,
 .container.extended {
     background: transparent !important;
 }
 
-/* 全局卡片毛玻璃 */
+/* ----------------------------------------
+ * 3. 卡片半透明 + 毛玻璃
+ *    统一用 !important 直打，不走 CSS 变量
+ *    （Hugo SCSS 会把 :root 变量合并吞掉）
+ * ---------------------------------------- */
+/* 亮色 */
 .article-list article,
 .section-card,
 .article-page .main-article,
 .widget.archives .widget-archive--list,
 .tagCloud .tagCloud-tags a,
-.search-form {
+.pagination {
+    background-color: rgba(255, 255, 255, 0.7) !important;
     backdrop-filter: blur(8px);
 }
 
-/* 侧边栏 */
+/* 深色 */
+[data-scheme="dark"] .article-list article,
+[data-scheme="dark"] .section-card,
+[data-scheme="dark"] .article-page .main-article,
+[data-scheme="dark"] .widget.archives .widget-archive--list,
+[data-scheme="dark"] .tagCloud .tagCloud-tags a,
+[data-scheme="dark"] .pagination {
+    background-color: rgba(30, 30, 30, 0.65) !important;
+}
+
+/* 搜索框 input（自带 card-style，只改背景+模糊，不叠容器层） */
+.search-form {
+    background: none !important;
+}
+.search-form input {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+[data-scheme="dark"] .search-form input {
+    background-color: rgba(30, 30, 30, 0.65) !important;
+}
+
+/* ----------------------------------------
+ * 4. 侧边栏
+ * ---------------------------------------- */
 .left-sidebar {
     padding: var(--card-padding) !important;
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
     backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* 菜单项去掉负边距 */
+[data-scheme="dark"] .left-sidebar {
+    background-color: rgba(30, 30, 30, 0.65) !important;
+}
+
 .left-sidebar #main-menu {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
 
-/* 桌面端：增加上下间距 */
 @media (min-width: 768px) {
     .left-sidebar {
         margin-top: var(--main-top-padding) !important;
         margin-bottom: var(--main-top-padding) !important;
     }
-
     .left-sidebar.sticky {
         top: var(--main-top-padding) !important;
     }
 }
 
-/* 底部透明度 */
+/* ----------------------------------------
+ * 5. 底部
+ * ---------------------------------------- */
 .footer {
     background-color: transparent !important;
 }
