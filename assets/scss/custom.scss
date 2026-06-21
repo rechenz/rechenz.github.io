@@ -34,10 +34,18 @@ body {
     backdrop-filter: blur(3px);
 }
 
-/* 侧边栏：半透明背景，保证文字可读 */
+/* 侧边栏：卡片风 + 紧贴左边缘 */
 .left-sidebar {
+    margin-left: calc(var(--container-padding) * -1);
+    padding: var(--card-padding) !important;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.left-sidebar.sticky {
+    top: var(--main-top-padding) !important;
 }
 
 [data-scheme="dark"] .left-sidebar {
