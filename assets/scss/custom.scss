@@ -1,15 +1,25 @@
 /* 自定义背景 — 原神绮良良 4K 壁纸 */
-:root {
-    --body-background: #f5f5fa;
 
-    /* 亮色模式：半透明白色卡片 */
-    --card-background: rgba(255, 255, 255, 0.75);
-    --card-background-selected: rgba(234, 234, 234, 0.85);
+/* 亮色模式：所有卡片半透明 */
+.article-list article,
+.section-card,
+.article-page .main-article,
+.widget.archives .widget-archive--list,
+.tagCloud .tagCloud-tags a,
+.pagination,
+.left-sidebar {
+    background-color: rgba(255, 255, 255, 0.7) !important;
 }
 
-[data-scheme="dark"] {
-    --card-background: rgba(40, 40, 40, 0.7);
-    --card-background-selected: rgba(60, 60, 60, 0.8);
+/* 深色模式：所有卡片半透明 */
+[data-scheme="dark"] .article-list article,
+[data-scheme="dark"] .section-card,
+[data-scheme="dark"] .article-page .main-article,
+[data-scheme="dark"] .widget.archives .widget-archive--list,
+[data-scheme="dark"] .tagCloud .tagCloud-tags a,
+[data-scheme="dark"] .pagination,
+[data-scheme="dark"] .left-sidebar {
+    background-color: rgba(30, 30, 30, 0.65) !important;
 }
 
 /* 背景图片 */
@@ -45,19 +55,12 @@ main.main,
     backdrop-filter: blur(8px);
 }
 
-
-
-/* 侧边栏：卡片风 */
+/* 侧边栏 */
 .left-sidebar {
     padding: var(--card-padding) !important;
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.7) !important;
-}
-
-[data-scheme="dark"] .left-sidebar {
-    background-color: rgba(30, 30, 30, 0.65) !important;
 }
 
 /* 菜单项去掉负边距 */
