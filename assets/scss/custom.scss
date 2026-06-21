@@ -37,6 +37,9 @@ main.main,
 .search-form input {
     background-color: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(8px);
+    line-height: 1.2;
+    padding: 14px 20px;
+    font-size: 1.6rem;
 }
 
 .left-sidebar {
@@ -57,6 +60,9 @@ main.main,
 [data-scheme="dark"] .search-form input {
     background-color: rgba(25, 25, 25, 0.55);
     backdrop-filter: blur(8px);
+    line-height: 1.2;
+    padding: 14px 20px;
+    font-size: 1.6rem;
 }
 
 [data-scheme="dark"] .left-sidebar {
