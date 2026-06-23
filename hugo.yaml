@@ -39,7 +39,7 @@ params:
 
     sidebar:
         compact: false
-        avatar: "https://github.com/rechenz.png"
+        avatar: "/avatar.jpg"
         subtitle: "游戏开发者 · AI 爱好者"
         emoji: "🐺"
         status:
