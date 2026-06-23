@@ -41,7 +41,6 @@ params:
         compact: false
         avatar: "/avatar.jpg"
         subtitle: "游戏开发者 · AI 爱好者"
-        emoji: "🐺"
         status:
             emoji: "🟢"
             message: "在线"
