@@ -1,12 +1,11 @@
 ---
 date: '2023-10-16T16:40:00+08:00'
-draft: true
+draft: false
 title: 'P9705 「TFOI R1」Unknown Graph 题解'
 tags:
-    -算法
-    -题解
+    - 算法
+    - 题解
 ---
-
 一道有趣简单的构造题。
 
 阅读题面，发现这似乎很难找到完美的贪心策略，那么我们考虑网络流。
@@ -83,7 +82,7 @@ bool BFS(){
 int DFS(int x,int sum){
     if(x==t) return sum;
     int k,res=0;
-    for(int i=now[x];i&&sum;i=e[i].next){
+    for(int i=now[x];i&∑i=e[i].next){
         int v=e[i].to;
         now[x]=i;
         if(dis[v]==dis[x]+1&&e[i].wide){

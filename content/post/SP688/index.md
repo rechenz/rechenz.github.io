@@ -1,12 +1,11 @@
 ---
 date: '2023-06-12T14:10:00+08:00'
-draft: true
+draft: false
 title: 'SP688 SAM - Toy Cars题解'
 tags:
-    -算法
-    -题解
+    - 算法
+    - 题解
 ---
-
 # 双倍经验[P3419](https://www.luogu.com.cn/problem/P3419)
 
 其实我第一眼看到这道题的时候以为是一道 $\texttt {DP}$，但是想了想就发现要记录的状态实在太多，于是就去想贪心。

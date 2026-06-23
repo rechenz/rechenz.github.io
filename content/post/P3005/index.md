@@ -1,12 +1,11 @@
 ---
 date: '2023-05-30T13:28:00+08:00'
-draft: true
+draft: false
 title: 'P3005 [USACO10DEC]The Trough Game S题解'
 tags:
-    -算法
-    -题解
+    - 算法
+    - 题解
 ---
-
 首先看到这道题的数据范围就可以想到是枚举暴力。
 
 而对于枚举我们有两种方法，一种是 $\texttt {DFS}$，而另一种是通过二进制来进行枚举（~~反正我用的 $\texttt {DFS}$~~）。

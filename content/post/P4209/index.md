@@ -1,14 +1,15 @@
 ---
 date: '2023-06-17T15:39:00+08:00'
-draft: true
+draft: false
 title: 'P4209 学习小组 题解'
 tags:
-    -算法
-    -题解
+    - 算法
+    - 题解
+---
+# $\rm tag$：网络流，费用流
+
 ---
 
-# $\rm tag$：网络流，费用流
----
 我第一眼看到这道题的平方建边的时候我还以为需要一些数学方面的优化，但是同机房大佬瞅了一眼跟我说暴力建边能过，我心里一群草泥马奔腾而过。。。
 
 这题的基本建模其实就是按照题意模拟：
@@ -80,7 +81,7 @@ int DFS(int x,int sum){
     if(x==t) return ans+=dis[t]*sum,sum;
     int k,res=0;
     vis[x]=1;
-    for(int i=now[x];i&&sum;i=e[i].next){
+    for(int i=now[x];i&∑i=e[i].next){
         int v=e[i].to;
         now[x]=i;
         if(e[i].wide&&(dis[v]==dis[x]+e[i].val)&&!vis[v]){
