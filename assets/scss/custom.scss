@@ -33,7 +33,6 @@ main.main,
 .widget.archives .widget-archive--list,
 .tagCloud .tagCloud-tags a,
 .pagination,
-.left-sidebar,
 .search-form input {
     background-color: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(8px);
@@ -42,7 +41,9 @@ main.main,
     font-size: 1.6rem;
 }
 
+/* 侧边栏单独处理毛玻璃——背景跟着走，padding / line-height 不动 */
 .left-sidebar {
+    background-color: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(12px);
 }
 
@@ -65,7 +66,6 @@ main.main,
 [data-scheme="dark"] .widget.archives .widget-archive--list,
 [data-scheme="dark"] .tagCloud .tagCloud-tags a,
 [data-scheme="dark"] .pagination,
-[data-scheme="dark"] .left-sidebar,
 [data-scheme="dark"] .search-form input {
     background-color: rgba(25, 25, 25, 0.55);
     backdrop-filter: blur(8px);
@@ -74,7 +74,9 @@ main.main,
     font-size: 1.6rem;
 }
 
+/* 深色：侧边栏单独 */
 [data-scheme="dark"] .left-sidebar {
+    background-color: rgba(25, 25, 25, 0.55);
     backdrop-filter: blur(12px);
 }
 
@@ -132,10 +134,11 @@ main.main,
     }
 }
 
-/* 侧边栏宽度补丁 + 内容右移 */
+/* 侧边栏宽度补丁 + 内容右移 + 超出滚动 */
 .left-sidebar {
     width: 22%;
     padding-left: calc((var(--card-padding) + 8px) * 2 / 3) !important;
+    overflow-y: auto;
 }
 
 /* ----------------------------------------
