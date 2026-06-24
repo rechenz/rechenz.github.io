@@ -25,6 +25,7 @@ languages:
         weight: 1
 
 params:
+    favicon: "/favicon.png"
     mainSections: ["post"]
     rssFullContent: true
     SortBy: "default"
