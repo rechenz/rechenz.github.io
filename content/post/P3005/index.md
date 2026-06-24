@@ -8,15 +8,15 @@ tags:
 ---
 首先看到这道题的数据范围就可以想到是枚举暴力。
 
-而对于枚举我们有两种方法，一种是 $\texttt {DFS}$，而另一种是通过二进制来进行枚举（~~反正我用的 $\texttt {DFS}$~~）。
+而对于枚举我们有两种方法，一种是 $\texttt{DFS}$，而另一种是通过二进制来进行枚举（~~反正我用的 $\texttt{DFS}$~~）。
 
-而这题有两种情况的翻译并没有给出，一种是无解输出 $\texttt{IMPOSSIBLE}$，另一种是解法不唯一输出 $\texttt {NOT UNIQUE}$。
+而这题有两种情况的翻译并没有给出，一种是无解输出 $\texttt{IMPOSSIBLE}$，另一种是解法不唯一输出 $\texttt{NOT UNIQUE}$。
 
-而对于 $\texttt{IMPOSSIBLE}$ 我们只需要判断 $\texttt {DFS}$ 后是否找到了一种解就好了。
+而对于 $\texttt{IMPOSSIBLE}$ 我们只需要判断 $\texttt{DFS}$ 后是否找到了一种解就好了。
 
-对于 $\texttt {NOT UNIQUE}$ 情况我们也只需要在判断是否找到了不唯一的合法解就可以了。
+对于 $\texttt{NOT UNIQUE}$ 情况我们也只需要在判断是否找到了不唯一的合法解就可以了。
 
-复杂度 ${\rm O}(2^{n}m)$，不完全估计 ${\rm O}(104857600)$，$\texttt{1s}$ 肯定是能过的啦。
+复杂度 $\mathrm{O}(2^{n}m)$，不完全估计 $\mathrm{O}(104857600)$，$\texttt{1s}$ 肯定是能过的啦。
 
 # code
 
