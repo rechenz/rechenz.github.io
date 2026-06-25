@@ -56,6 +56,12 @@ main.main,
     backdrop-filter: blur(8px);
 }
 
+/* 相关文章 tile 卡片毛玻璃 */
+.article-list--tile article {
+    background-color: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+}
+
 /* ----------------------------------------
  * 3. 深色模式：卡片统一半透明深色
  * ---------------------------------------- */
@@ -84,7 +90,8 @@ main.main,
 [data-scheme="dark"] .widget--toc,
 [data-scheme="dark"] .article-toc details,
 [data-scheme="dark"] #pagination-jump-dialog,
-[data-scheme="dark"] .search-form {
+[data-scheme="dark"] .search-form,
+[data-scheme="dark"] .article-list--tile article {
     background-color: rgba(25, 25, 25, 0.55);
     backdrop-filter: blur(8px);
 }
