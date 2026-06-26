@@ -141,23 +141,28 @@ main.main,
     }
 }
 
-/* 侧边栏宽度补丁 + 内容右移 + 超出滚动 */
+/* 侧边栏宽度补丁 + 对称内边距 + 超出滚动 */
 .left-sidebar {
     width: 22%;
-    padding-left: calc((var(--card-padding) + 8px) * 2 / 3) !important;
+    $side-padding: calc((var(--card-padding) + 8px) * 2 / 3);
+    padding-left: $side-padding !important;
+    padding-right: $side-padding !important;
     overflow-y: auto;
 }
 
 /* ----------------------------------------
- * 6. 侧边栏排版：头像居中，名字/简介与菜单对齐
+ * 6. 侧边栏排版：头像居中，文字与菜单左对齐
  * ---------------------------------------- */
 .sidebar header {
     .site-avatar {
         margin: 0 auto;
     }
+}
 
-    .site-meta {
-        text-align: right;
+/* 菜单 md+ 默认右对齐 → 改成左对齐 */
+@media (min-width: 768px) {
+    #main-menu {
+        align-items: flex-start;
     }
 }
 
