@@ -235,3 +235,5 @@ clangd --compile-commands-dir=F:/project/YourProject --check=F:/project/YourProj
 | 手动验证必切目录              | 就是上面那个，别在项目目录跑                                      |
 
 ---
+
+*最后提示：千万不要在UE里Refresh Vscode Project*
