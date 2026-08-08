@@ -117,15 +117,9 @@ clangd 读取 → 索引 → 补全 / 跳转 / 报错 / inlay hints
 - `--compile-commands-dir`：指向 compile_commands.json 所在目录（项目根），这是 clangd 找到编译数据库的钥匙
 - `editor.inlayHints.enabled`：开启 **inlay hints**（内联提示）——函数调用边上显示参数名、`auto` 显示推断类型的灰字。clangd 默认会发，但 VS Code 默认不显示，必须手动开
 
-如果重启 clangd 后还是没有内联提示，可以往 `clangd.arguments` 加更细的控制：
-
-```json
-"--inlay-hints=parameters+types"
-```
-
-`parameters` 显示参数名、`types` 显示 auto 推断类型，`+` 组合。
-
 改完配置后：`Ctrl+Shift+P` → `clangd: Restart language server` 生效。
+
+> ⚠️ 注意：**不要**往 `clangd.arguments` 里加 `--inlay-hints` 之类的参数——clangd 22 不认这个命令行参数，会让 clangd 直接启动失败。inlay hints 的开关就是 `editor.inlayHints.enabled` 这一个设置，clangd 会通过 LSP 自动发送。
 
 ## 日常使用规则（就一条）
 
@@ -212,6 +206,25 @@ void AActor1::TriggerEvent()
     OnSomethingHappened.Broadcast();
 }
 ```
+
+### 坑 5：clangd 启动失败 `Unknown command line argument`
+
+**现象：**
+
+```
+clangd.exe: Unknown command line argument '"--inlay-hints=parameters+types"'
+Server crashed 5 times... The server will not be restarted
+```
+
+**原因：** `clangd.arguments` 里加了 clangd 22 不认的参数（比如 `--inlay-hints=...`），clangd 直接拒绝启动。更阴险的是：**VS Code 里用户级设置和工作区设置的 `clangd.arguments` 数组是覆盖关系，不是合并**——用户设置里残留一个残缺的数组，会把工作区里 `--compile-commands-dir` 等正确参数全部顶掉，导致 clangd 找不到编译数据库、引擎头文件全炸（`Stats/Stats.h` file not found、`UE_BUILD_DEVELOPMENT` 未定义等连锁报错）。
+
+**解法：**
+
+1. 检查用户级设置（`Ctrl+Shift+P` → Preferences: Open User Settings (JSON)），删掉残留的 `clangd.arguments`
+2. inlay hints 只需要 `editor.inlayHints.enabled: "on"`，clangd 22 不支持 `--inlay-hints` 命令行参数，别加
+3. 重载窗口后 `clangd: Restart language server`
+
+**诊断技巧：** 当出现一坨引擎头文件连锁报错（file not found + 宏未定义）时，先怀疑 clangd 拿到的参数对不对——查看 clangd 输出面板的启动日志，里面会打印完整参数列表。
 
 ## 验证流程速查
 
