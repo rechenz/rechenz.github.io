@@ -3,9 +3,7 @@ date: '2026-08-08T12:30:00+08:00'
 draft: false
 title: '使用vscode进行UE开发指南'
 tags:
-    - UE5
-    - VS Code
-    - 开发环境
+    - 游戏开发
 ---
 
 > 适用：UE 5.x 项目 + VS Code 开发，用 clangd 做代码索引/补全/报错。
@@ -131,11 +129,11 @@ clangd 读取 → 索引 → 补全 / 跳转 / 报错 / inlay hints
 
 ## 日常使用规则（就一条）
 
-| 你做了什么 | 要不要刷 |
-|---|---|
-| 改 .cpp / .h 内容 | ❌ clangd 自动重新解析 |
+| 你做了什么              | 要不要刷                         |
+| ----------------------- | -------------------------------- |
+| 改 .cpp / .h 内容       | ❌ clangd 自动重新解析            |
 | **新增 .cpp / .h 文件** | ✅ 跑一次 Generate Clang Database |
-| 改 Build.cs / 模块依赖 | ✅ 跑一次 |
+| 改 Build.cs / 模块依赖  | ✅ 跑一次                         |
 
 UE 编辑器里的 `Tools → Generate Visual Studio project files` **不用点**——那是给 Visual Studio 生成 .sln 的，跟 clangd 无关。放着别删，以后万一要用 VS 调试还有用。
 
@@ -229,13 +227,11 @@ clangd --compile-commands-dir=F:/project/YourProject --check=F:/project/YourProj
 
 ## 附录：环境备忘（实测值）
 
-| 项 | 值 |
-|---|---|
-| UE 引擎 | `E:/Epicgames/games/UE_5.8` |
-| clangd | 22.1.3（VS 18 自带 LLVM，比 UE 首选 20.1.8 新，UBT 有警告但能用） |
-| compile_commands 的 directory | `E:/Epicgames/games/UE_5.8/Engine/Source` |
-| 手动验证必切目录 | 就是上面那个，别在项目目录跑 |
+| 项                            | 值                                                                |
+| ----------------------------- | ----------------------------------------------------------------- |
+| UE 引擎                       | `E:/Epicgames/games/UE_5.8`                                       |
+| clangd                        | 22.1.3（VS 18 自带 LLVM，比 UE 首选 20.1.8 新，UBT 有警告但能用） |
+| compile_commands 的 directory | `E:/Epicgames/games/UE_5.8/Engine/Source`                         |
+| 手动验证必切目录              | 就是上面那个，别在项目目录跑                                      |
 
 ---
-
-*写于 2026-08-08，实战排坑记录。有问题先跑 `clangd --check`，别信二手分析。*
