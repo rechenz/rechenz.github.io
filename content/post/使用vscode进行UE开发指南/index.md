@@ -269,6 +269,27 @@ SortIncludes: Never   # 保命配置，禁止重排 include
 
 **教训：** UE 项目必须配 `.clang-format` 且 `SortIncludes: Never`，否则 format on save 会静默破坏 UE 宏系统——报错全在引擎头文件里，根本想不到是自己的 include 顺序被格式化器动了。
 
+### 坑 7：配了 `.clang-format` 还是被重排？凶手是 C/C++ 扩展的 vcFormat
+
+**现象：** 明明在用户级配了 `SortIncludes: Never`，保存文件后 include 还是被打乱（`generated.h` 又跑最前面），而且后面几个 include 被 clangd 标灰（unused include 提示，因为符号已被 generated.h 间接引入）。
+
+**原因：** VS Code 里可能有**两个格式化引擎**同时在候选：
+
+- clangd 自带的 formatter（读 `.clang-format`，尊重 `SortIncludes: Never`）
+- **C/C++ 扩展的 `vcFormat`**（不读 `.clang-format`，有自己的 include 排序逻辑）
+
+用户设置里 `"C_Cpp.formatting": "vcFormat"` 就是雷——当 clangd 没在跑（崩溃、没重载）或格式化 fallback 时，保存会走 vcFormat，它无视你的 `.clang-format` 直接按自己的规则重排 include。
+
+**解法：** 用户设置里把 C/C++ 扩展的格式化引擎切换成 clangFormat：
+
+```json
+"C_Cpp.formatting": "clangFormat"
+```
+
+`clangFormat` 模式走 clang-format 逻辑，**会读 `.clang-format` 文件**（包括用户级的），`SortIncludes: Never` 才会真正生效。改完重载窗口。
+
+**排查技巧：** 被重排后看代码风格就知道是谁干的——vcFormat 会把大括号改成同行（Allman 变 Attach），clangd 按你的 `.clang-format` 来。另外如果 clangd 崩过 5 次（`The server will not be restarted`），格式化会静默 fallback 到 cpptools，这是最常见的触发条件。
+
 ## 验证流程速查
 
 ```powershell
