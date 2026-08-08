@@ -226,6 +226,49 @@ Server crashed 5 times... The server will not be restarted
 
 **诊断技巧：** 当出现一坨引擎头文件连锁报错（file not found + 宏未定义）时，先怀疑 clangd 拿到的参数对不对——查看 clangd 输出面板的启动日志，里面会打印完整参数列表。
 
+### 坑 6：format on save 把 include 顺序排乱，UE 宏系统连锁爆炸
+
+**现象：** 代码本来好好的，某次保存后 clangd 突然报一坨引擎头文件错误：
+
+```
+unknown type name 'FID_Engine_Source_Runtime_Engine_Classes_GameFramework_Actor_h_11_PROLOG'
+UCLASS() 展开失败 → GENERATED_BODY() 失败 → 引擎 Actor.h 解析失败 → 连锁爆炸
+```
+
+**原因：** VS Code 开启了 `editor.formatOnSave`，而 clangd 的格式化器默认 `SortIncludes` 会把 include **按字母序重排**！UE 的 `.generated.h` 以 A 开头，被直接拎到 include 列表最前面。
+
+**UE 铁律：`.generated.h` 必须放在 include 列表的最后**。它会 `#define CURRENT_FILE_ID` 指向当前文件，让本文件的 `UCLASS()` / `GENERATED_BODY()` 展开成正确的宏。顺序一乱：先定义了 Actor1 的 ID，然后 include Actor.h 时引擎的 generated.h 把 `CURRENT_FILE_ID` 覆盖成引擎 Actor 的 → `UCLASS()` 拼出 `FID_Engine_..._Actor_h_11_PROLOG`（不存在的宏）→ unknown type name → 连锁炸穿。
+
+**解法：**
+
+1. 把 include 顺序改回：
+
+```cpp
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "Actor1.generated.h"  // 永远在最后！
+```
+
+2. 重新跑一次 Generate Clang Database（UHT 会基于当前文件重新生成 `.generated.h`，因为格式化也把行号弄错位了，宏名对不上）
+
+3. **根治：配置 `.clang-format`，禁止重排 include**。推荐放用户级（所有项目生效），`C:\Users\<你>\.clang-format`：
+
+```yaml
+BasedOnStyle: LLVM
+Language: Cpp
+IndentWidth: 4
+UseTab: Always
+TabWidth: 4
+BreakBeforeBraces: Allman
+ColumnLimit: 0
+Standard: c++20
+SortIncludes: Never   # 保命配置，禁止重排 include
+```
+
+> 查找优先级：项目根 `.clang-format` > 用户级 `~/.clang-format`。某个项目想单独配就放项目根。
+
+**教训：** UE 项目必须配 `.clang-format` 且 `SortIncludes: Never`，否则 format on save 会静默破坏 UE 宏系统——报错全在引擎头文件里，根本想不到是自己的 include 顺序被格式化器动了。
+
 ## 验证流程速查
 
 ```powershell
