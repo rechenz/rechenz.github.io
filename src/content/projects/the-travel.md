@@ -1,10 +1,10 @@
 ---
 title: TheTravel — 3D RPG 冒险游戏
 published: 2026-05-01
-order: 2
+order: 5
 description: 与合作开发者共同制作的 3D RPG，完整搭建了场景、流程、任务、对话、存档、物品系统全链路，并自研水体模拟着色器。
 tags: [Unity, C#, ShaderLab, 3D RPG]
-status: 已完成
+status: published
 link:
   - label: GitHub
     icon: fa7-brands:github

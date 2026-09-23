@@ -1,10 +1,10 @@
 ---
 title: TheDemiuge — AI Agent 驱动的游戏 NPC 框架
 published: 2026-06-05
-order: 1
+order: 6
 description: 自研「游戏 ↔ 大模型」通信框架：Go 实现 ReAct 对话循环、Agent 工具调用与 MCP 注册中心，把 Agent 工具集抽象成 NPC 的实时控制层。
 tags: [Go, AI Agent, MCP, UE5, 开源]
-status: 进行中
+status: developing
 link:
   - label: Bridge（Go 后端）
     icon: fa7-brands:github

@@ -1,10 +1,10 @@
 ---
 title: DOT 宇宙探索 — GameJam 2026 团队作品
 published: 2026-01-15
-order: 3
+order: 4
 description: 2D 叙事解谜冒险，用康威生命游戏模拟宇宙。5 人团队的程序负责人兼项目负责人，自研状态管理、对话、异步场景加载等核心系统。
 tags: [Unity, C#, GameJam, 2D]
-status: 已完成
+status: published
 link:
   - label: GitHub
     icon: fa7-brands:github

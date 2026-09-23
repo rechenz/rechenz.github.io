@@ -1,10 +1,10 @@
 ---
 title: weight-masking-experiment — 神经网络训练动态研究
 published: 2026-07-22
-order: 4
+order: 3
 description: 模拟「机能不全 → 健全」的训练过程：前期约束网络、后期逐渐放开，类比大脑发育。CIFAR-10 上 Fixed Mask 达到 82.69%，反超 Baseline 1.65%。
 tags: [Python, PyTorch, TinyViT, 实验]
-status: 已完成
+status: published
 link:
   - label: GitHub
     icon: fa7-brands:github

@@ -1,10 +1,10 @@
 ---
 title: 西二在线 Unity & UE 技术部 2026 纳新站
 published: 2026-08-10
-order: 5
+order: 2
 description: 为福州大学西二在线工作室 Unity & UE 技术部做的纳新介绍站，Tailwind 单页无构建，部署在 GitHub Pages。
 tags: [Tailwind, HTML, 静态站]
-status: 已完成
+status: published
 link:
   - label: 线上站点
     icon: material-symbols:link

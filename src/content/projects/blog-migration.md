@@ -1,10 +1,10 @@
 ---
 title: rechenz.github.io — 博客换栈：Hugo → Astro
 published: 2026-09-23
-order: 6
+order: 1
 description: 把博客从 Hugo + Stack 整体迁到 Astro + Firefly，33 篇文章迁移、46 条旧链接零失效（含带 + 号的 slug 与标签目录页），并留下可重放的补丁脚本与校验脚本。
 tags: [Astro, 前端, 工程化, 开源]
-status: 进行中
+status: developing
 link:
   - label: GitHub
     icon: fa7-brands:github
