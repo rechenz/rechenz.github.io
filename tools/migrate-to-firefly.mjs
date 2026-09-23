@@ -188,8 +188,6 @@ function main() {
     fmLines.push(`published: ${toAstroDate(fields.date)}`);
     if (tags.length) fmLines.push(`tags: [${tags.map(yamlScalar).join(', ')}]`);
     fmLines.push(`category: ${yamlScalar(category)}`);
-    // 封面：交给 Firefly 的随机图占位，详见 src/config/coverImageConfig.ts
-    fmLines.push('image: "api"');
     if (fields.draft === 'true') fmLines.push('draft: true');
     fmLines.push('---');
     const out = `${fmLines.join('\n')}\n\n${newBody.replace(/^\n+/, '')}`;

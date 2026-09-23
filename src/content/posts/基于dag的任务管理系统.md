@@ -3,7 +3,6 @@ title: 基于DAG的任务管理系统
 published: 2026-06-26T21:46:41+08:00
 tags: [游戏开发]
 category: 游戏开发
-image: "api"
 ---
 
 本文将对一个基于 $\text{DAG}$ 的任务管理系统实现详细逻辑和代码拆解。

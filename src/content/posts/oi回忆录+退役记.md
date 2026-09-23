@@ -3,7 +3,6 @@ title: OI回忆录+退役记
 published: 2023-11-17T19:49:00+08:00
 tags: [碎碎念]
 category: 随笔
-image: "api"
 ---
 
 2023年11月17日
