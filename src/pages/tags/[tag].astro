@@ -1,0 +1,40 @@
+---
+/**
+ * 兼容旧站：Hugo 会为每个标签生成 /tags/<标签>/ 目录页。
+ * Firefly 默认用 /archive/?tag=xxx 的客户端筛选，这里补回真实的标签页，
+ * 让旧地址 /tags/<标签>/ 直接可访问（标签 slug 按 Hugo 规则小写化 ASCII 字符）。
+ */
+import type { GetStaticPaths } from "astro";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import PostPage from "@/components/layout/PostPage.astro";
+import { getSortedPosts, getTagList } from "@/utils/content-utils";
+
+
+export const getStaticPaths = (async () => {
+	const posts = await getSortedPosts();
+	const tags = await getTagList();
+
+	// 与 Hugo disablePathToLower=false 的行为对齐：ASCII 转小写，非 ASCII 原样。
+	// （必须定义在 getStaticPaths 内部：Astro 会把这个函数编译到独立模块，
+	//   外层 frontmatter 的局部变量不在它的作用域里）
+	const toSlug = (name: string) => name.replace(/[A-Z]/g, (c) => c.toLowerCase());
+
+	return tags.map((tag) => ({
+		params: { tag: toSlug(tag.name) },
+		props: {
+			tagName: tag.name,
+			posts: posts.filter((post) => (post.data.tags ?? []).includes(tag.name)),
+		},
+	}));
+}) satisfies GetStaticPaths;
+
+const { tagName, posts } = Astro.props;
+---
+
+<MainGridLayout heading={`#${tagName}`}>
+  <div class="card-base px-6 py-4 mb-4">
+    <div class="text-xl font-bold text-(--primary)">#{tagName}</div>
+    <p class="text-30 text-sm mt-1">共 {posts.length} 篇文章</p>
+  </div>
+  <PostPage page={{ data: posts } as any} />
+</MainGridLayout>

@@ -1,0 +1,22 @@
+packages:
+  - '.'
+
+# 允许执行安装脚本的包
+allowBuilds:
+  esbuild: true
+  workerd: true
+
+# 跳过这些平台的 workerd 二进制（33MB/个）：
+# 本站部署在 GitHub Pages，不用 Cloudflare Workers 适配器；
+# @astrojs/cloudflare 在 astro.config.mjs 里只在 CF_WORKERS 环境变量存在时才启用。
+#
+# 注意（实测自 docs/blog-migration-audit.md）：
+#   - pnpm 11 不再读取 package.json 的 "pnpm" 字段（会 WARN），配置必须写在这里；
+#   - 生效后 pnpm-lock.yaml 里仍会记录这些包，只有 node_modules/.pnpm/ 下会真正消失，
+#     验证时请看实体目录，别被 lockfile 误导。
+ignoredOptionalDependencies:
+  - '@cloudflare/workerd-windows-64'
+  - '@cloudflare/workerd-linux-64'
+  - '@cloudflare/workerd-linux-arm64'
+  - '@cloudflare/workerd-darwin-64'
+  - '@cloudflare/workerd-darwin-arm64'

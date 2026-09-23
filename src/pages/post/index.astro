@@ -1,0 +1,15 @@
+---
+/**
+ * 兼容旧站：Hugo 时代文章列表页在 /post/。
+ * 迁移到 Astro 后首页是 /，这里把 /post/ 还原成同样的文章列表，保证旧链接可用。
+ */
+import PostPage from "@/components/layout/PostPage.astro";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { getSortedPosts } from "@/utils/content-utils";
+
+const posts = await getSortedPosts();
+---
+
+<MainGridLayout heading="文章">
+  <PostPage page={{ data: posts } as any} />
+</MainGridLayout>

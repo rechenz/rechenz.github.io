@@ -1,0 +1,14 @@
+---
+/**
+ * 兼容旧站：Hugo 的归档页地址是 /archives/（复数），Firefly 默认 /archive/。
+ * 这里保留旧地址，内容与 /archive/ 一致。
+ */
+import ArchivePanel from "@components/controls/ArchivePanel.astro";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout title={i18n(I18nKey.archive)}>
+  <ArchivePanel />
+</MainGridLayout>
