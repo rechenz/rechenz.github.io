@@ -4,6 +4,8 @@ published: 2026-09-22T08:44:33+08:00
 tags: [游戏开发, TheDemiugeAgent]
 category: 游戏开发
 pinned: true
+series: "TheDemiuge"
+seriesOrder: 1
 ---
 
 [项目地址](https://github.com/rechenz/TheDemiugeUE5)
