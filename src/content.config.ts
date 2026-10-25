@@ -65,7 +65,15 @@ const postsCollection: ContentCollection<PostData> = defineCollection({
 		base: "./src/content/posts",
 		// 保留文件名原样作为 id：Astro 默认的 slug 化会吃掉 URL 里的 "+"，
 		// 导致旧地址 /post/oi回忆录+退役记/ 失效
-		generateId: ({ entry }) => entry.replace(/\.(md|mdx)$/i, ""),
+		//
+		// 2026-10-25：再把目录层级剔掉，id 只留文件名本体。
+		// 原因：文章搬进 posts/算法/ 、posts/TheDemiuge/ 、posts/技术读物/ 之后，
+		// id 变成了 "算法/p1653"，URL 跟着变成 /post/算法/p1653/，旧站的 22 条
+		// 扁平地址全部 404。分类已经由 front matter 的 category / series 表达，
+		// 目录只是源码组织方式，不应进 URL。
+		// 前提（已校验）：所有文章文件名全局唯一，无重名。
+		generateId: ({ entry }) =>
+			entry.replace(/\.(md|mdx)$/i, "").split(/[\\/]/).pop() ?? entry,
 	}),
 	schema: z.object({
 		title: z.string(),
